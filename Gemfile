@@ -1,3 +1,5 @@
+source 'https://rubygems.org'
+ruby "2.0.0"
 
 # The guard gem used for watching and compiling our assets
 gem 'guard'
