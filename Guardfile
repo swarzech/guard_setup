@@ -28,10 +28,8 @@ end
 guard 'sass', :input => 'app/assets/stylesheets', :output => '..phonegap_app/www/assets/css'
 
 haml_coffee_options = {
-  # input: 'app/assets/javascripts',
+  # input: 'app/assets/javascripts'
   # output: '..phonegap_app/www/assets/templates'
-  # input: 'foo/bar', # strips 'foo/bar/' from output file name
-  # output: 'public/baz', # output dir
   #
   # Example (given above options): src/foo/bar/a.js.hamlc -> public/baz/a.js
 }
