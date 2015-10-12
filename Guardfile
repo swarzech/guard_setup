@@ -39,3 +39,13 @@ haml_coffee_options = {
 guard 'haml-coffee', haml_coffee_options do
   watch(/^.+(\.js\.hamlc)\Z/)
 end
+
+###
+# Sample Guardfile block for Guard::Uglify
+#
+# :input        - input file to compress
+# :output       - file to write compressed output to
+# :run_at_start - compressed input file when guard starts
+# :uglifier     - options to be passed to the uglifier gem
+###
+guard "uglify", :input => "app/assets/javascripts/application.js", :output => "public/javascripts/application.js"
