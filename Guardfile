@@ -28,8 +28,8 @@ end
 guard 'sass', :input => 'app/assets/stylesheets', :output => '..phonegap_app/www/assets/css'
 
 haml_coffee_options = {
-  input: 'app/assets/javascripts',
-  output: '..phonegap_app/www/assets/templates'
+  # input: 'app/assets/javascripts',
+  # output: '..phonegap_app/www/assets/templates'
   # input: 'foo/bar', # strips 'foo/bar/' from output file name
   # output: 'public/baz', # output dir
   #
@@ -49,3 +49,7 @@ end
 # :uglifier     - options to be passed to the uglifier gem
 ###
 guard "uglify", :input => "app/assets/javascripts/application.js", :output => "public/javascripts/application.js"
+
+guard :jammit do
+  watch(%r{^app/assets/stylesheets/(.*)\.css$})
+end

@@ -10,3 +10,4 @@ gem 'guard-haml-coffee', :git => 'https://github.com/guard/guard-haml-coffee.git
 gem 'guard-sass'
 gem 'guard-coffeescript'
 gem 'guard-uglify'
+gem 'guard-jammit'

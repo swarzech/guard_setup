@@ -15,6 +15,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    cssmin (1.0.3)
     execjs (2.6.0)
     ffi (1.9.10)
     formatador (0.2.5)
@@ -32,12 +33,20 @@ GEM
       guard (>= 2.1.0)
       guard-compat (~> 1.1)
     guard-compat (1.2.1)
+    guard-jammit (1.1.0)
+      guard (~> 2.12)
+      guard-compat (~> 1.2)
+      jammit
     guard-sass (1.6.0)
       guard (>= 2.8.0)
       sass (>= 3.1)
     guard-uglify (1.0.0)
       guard (>= 0.2.2)
       uglifier
+    jammit (0.6.6)
+      cssmin (>= 1.0.3)
+      jsmin (>= 1.0.1)
+    jsmin (1.0.1)
     json (1.8.3)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
@@ -70,6 +79,7 @@ DEPENDENCIES
   guard
   guard-coffeescript
   guard-haml-coffee!
+  guard-jammit
   guard-sass
   guard-uglify
 
