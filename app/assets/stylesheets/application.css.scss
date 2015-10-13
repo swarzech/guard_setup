@@ -1,0 +1,40 @@
+/*
+*= require backstitch
+*= require_self
+*/
+
+// Backstitch
+@import "_palette.css.scss";
+@import "_mixins.css.scss";
+@import "_responsive.css.scss";
+
+// Reset All Margins & Padding
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  // set text-size-adjust: 100% to prevent iOS from 
+  // changing text size after orientation changes
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  
+  // stop iOs from using native components
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  
+  // stop iOS from blinking when a link is clicked.
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  // Set 1em == 16px
+  line-height: 16px;
+  font-size: 16px;
+  color: #000;
+}
+
+a, img {
+  border: none;
+}

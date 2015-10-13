@@ -1,0 +1,221 @@
+/*
+* This file contains common mixins used throughout the entire application.
+* To reference this file put the following at the top of your .css.scss file:
+* 
+*   @import 'mixins';
+*
+*/
+
+@mixin fill-parent {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin fluid-scroll {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin vertical-scroll-pane {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -khtml-border-radius: $radius;
+}
+
+@mixin border-radius-explicit($topLeft: 0, $topRight: 0, $bottomLeft: 0, $bottomRight: 0) {
+  -webkit-border-top-left-radius: $topLeft;
+  -webkit-border-top-right-radius: $topRight;
+  -webkit-border-bottom-right-radius: $bottomLeft;
+  -webkit-border-bottom-left-radius: $bottomRight;
+  
+  -moz-border-radius-topleft: $topLeft;
+  -moz-border-radius-topright: $topRight;
+  -moz-border-radius-bottomright: $bottomLeft;
+  -moz-border-radius-bottomleft: $bottomRight;
+  
+  -ms-border-top-left-radius: $topLeft;
+  -ms-border-top-right-radius: $topRight;
+  -ms-border-bottom-left-radius: $bottomLeft;
+  -ms-border-bottom-right-radius: $bottomRight;
+  
+  border-top-left-radius: $topLeft;
+  border-top-right-radius: $topRight;
+  border-bottom-right-radius: $bottomLeft;
+  border-bottom-left-radius: $bottomRight;
+}
+
+@mixin background-alpha($color, $alpha: 0.5) {
+  $rgba: rgba($color, $alpha);
+  $ie-hex-str: ie-hex-str($rgba);
+  background-color: transparent;
+  background-color: $rgba;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+  zoom: 1;
+}
+
+
+@mixin linear-gradient($pos, $G1, $G2: false,
+                       $G3: false, $G4: false,
+                       $G5: false, $G6: false,
+                       $G7: false, $G8: false,
+                       $G9: false, $G10: false,
+                       $deprecated-pos1: left top,
+                       $deprecated-pos2: left bottom,
+                       $fallback: false) {
+  // Detect what type of value exists in $pos
+  $pos-type: type-of(nth($pos, 1));
+
+  // If $pos is missing from mixin, reassign vars and add default position
+  @if ($pos-type == color) or (nth($pos, 1) == "transparent")  {
+    $G10: $G9; $G9: $G8; $G8: $G7; $G7: $G6; $G6: $G5;
+     $G5: $G4; $G4: $G3; $G3: $G2; $G2: $G1; $G1: $pos;
+    $pos: top; // Default position
+  }
+
+  $full: compact($G1, $G2, $G3, $G4, $G5, $G6, $G7, $G8, $G9, $G10);
+
+  // Set $G1 as the default fallback color
+  $fallback-color: nth($G1, 1);
+
+  // If $fallback is a color use that color as the fallback color
+  @if (type-of($fallback) == color) or ($fallback == "transparent") {
+    $fallback-color: $fallback;
+  }
+
+  background-color: $fallback-color;
+  background-image: deprecated-webkit-gradient(linear, $deprecated-pos1, $deprecated-pos2, $full); // Safari <= 5.0
+  background-image:  -webkit-linear-gradient($pos, $full); // Safari 5.1+, Chrome
+  background-image:     -moz-linear-gradient($pos, $full);
+  background-image:      -ms-linear-gradient($pos, $full);
+  background-image:       -o-linear-gradient($pos, $full);
+  background-image: unquote("linear-gradient(#{$pos}, #{$full})");
+}
+
+
+// Usage: Gradient position is optional, default is top. Position can be a degree. Color stops are optional as well.
+// @include linear-gradient(#1e5799, #2989d8);
+// @include linear-gradient(#1e5799, #2989d8, $fallback:#2989d8);
+// @include linear-gradient(top, #1e5799 0%, #2989d8 50%);
+// @include linear-gradient(50deg, rgba(10, 10, 10, 0.5) 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+
+
+@mixin background-gradient($from: #fff, $to: #000) {
+  background-color: $from;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); /* Safari 4+, Chrome */
+  background-image: -webkit-linear-gradient(top, $from, $to); /* Chrome 10+, Safari 5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, $from, $to); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top, $from, $to); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, $from, $to); /* Firefox 16+, IE10, Opera 12.50+ */
+}
+
+@mixin box-shadow($color: #000, $offset-x: 1px, $offset-y: 1px, $blur: 1px, $spread: 1px) {
+  box-shadow: $offset-x $offset-y $blur $spread $color;
+  -moz-box-shadow: $offset-x $offset-y $blur $spread $color;
+  -webkit-box-shadow: $offset-x $offset-y $blur $spread $color;
+}
+
+@mixin inset-box-shadow($color: #000, $offset-x: 1px, $offset-y: 1px, $blur: 1px, $spread: 1px) {
+  box-shadow: inset $offset-x $offset-y $blur $spread $color;
+  -moz-box-shadow: inset $offset-x $offset-y $blur $spread $color;
+  -webkit-box-shadow: inset $offset-x $offset-y $blur $spread $color;
+}
+
+// Add percentage of white to a color
+@function tint($color, $percent){
+  @return mix(white, $color, $percent);
+}
+
+// Add percentage of black to a color
+@function shade($color, $percent){
+  @return mix(black, $color, $percent);
+}
+
+// stop iOs from using native components
+@mixin remove-webkit-styling {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+// Add a delay in css transition
+@mixin transition($time) {
+  -o-transition: $time;
+  -ms-transition: $time;
+  -moz-transition: $time;
+  -webkit-transition: $time;
+  transition: $time;
+}
+
+// Display an image as a cover
+@mixin cover($url) {
+  background: url($url) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=$url, sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=#{$url}, sizingMethod='scale')";
+}
+
+// Display an image as a cover
+@mixin placeholder-color($color) {
+  ::-webkit-input-placeholder {color: $color;}
+  :-moz-placeholder {color: $color;}
+  ::-moz-placeholder {color: $color;}
+  :-ms-input-placeholder {color: $color;}
+}
+
+@mixin toggle {  
+  .toggle {
+    list-style: none;
+  }
+
+  .toggle-item {
+    background: linear-gradient(to bottom, #fff 0%,#E6E6E6 44%,#CCCCCC 100%);
+    display: inline;
+    margin: 0em;
+    padding: 0.5em;
+    font-size: 0.7em;
+    line-height: 1em;
+    border: 1px solid $gray-15;
+    color: $purple;
+    text-transform:uppercase;
+    cursor: pointer;
+  }
+
+  .toggle-item:first-child{
+    -webkit-border-radius:5px 0 0 5px;
+    border-right: 1px solid $gray-15;
+  }
+  .toggle-item:last-child{
+    -webkit-border-radius:0 5px 5px 0;
+  }
+
+  .toggle-on{
+    background: #a00;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6d0019), color-stop(56%,#8f0222), color-stop(100%,#a90329));
+    background: linear-gradient(to bottom, #CCCCCC 0%,#E6E6E6 56%,#fff 100%);
+    -webkit-box-shadow: inset 0px 5px 5px 1px rgba(0, 0, 0, .3);
+    box-shadow: inset 0px 5px 5px 1px rgba(0, 0, 0, .3);
+//    background: $purple;
+    color: $purple; 
+  }
+}

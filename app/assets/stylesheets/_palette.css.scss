@@ -1,0 +1,95 @@
+/*
+* This file contains common variables used throughout the entire application.
+* To reference this file put the following at the top of your .css.scss file:
+* 
+*   @import 'palette';
+*
+*/
+
+// Standard backstitch color template
+
+$white: #ffffff;
+$gray-0: #f1f1f1;
+$gray-1: #e4e4e4;
+$gray-2: #d7d7d7;
+$gray-3: #cbcbcb;
+$gray-4: #bebebe;
+$gray-5: #b1b1b1;
+$gray-5: #a4a4a4;
+$gray-6: #989898;
+$gray-7: #8b8b8b;
+$gray-8: #7e7e7e;
+$gray-9: #727272;
+$gray-10: #656565;
+$gray-11: #585858;
+$gray-12: #4b4b4b;
+$gray-13: #3e3e3e;
+$gray-14: #323232;
+$gray-15: #252525;
+$gray-16: #181818;
+$gray-17: #0b0b0b;
+$black: #000000;
+
+$purple: #483269;
+$orange: #ff9300;
+//$orange: #e57e00;
+$red: #CC1611;
+
+// "freight-sans-pro","pragmatica-web-condensed" "ff-tisa-web-pro" "freight-sans-pro"
+
+$sans-font-family: "proxima-nova", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+$serif-font-family: "adelle", "Georgia", "Times New Roman", "Times", "serif";
+$mono-font-family: "Monaco", "Menlo", "Consolas", "Courier New", "monospace";
+
+// Functional Names
+$highlight: $purple;
+$subtitle-color: #808080;
+
+// Default highlight colors
+.highlight-bg {
+  background-color: $purple;
+  color: #fff;
+}
+
+.highlight-dark-bg {
+  background-color: darken($purple, 10%);
+  color: #fff;
+}
+
+.highlight-light-bg {
+  background-color: lighten($purple, 10%);
+  color: #fff
+}
+
+.highlight-fg {
+  color: $purple;
+}
+
+.highlight-dark-fg {
+  color: darken($purple, 10%);
+}
+
+.highlight-light-fg {
+  color: lighten($purple, 10%);
+}
+
+.highlight-hover {
+  &:hover { @extend .highlight-light-fg; }
+  &:active { @extend .highlight-dark-fg; }
+}
+
+.highlight-action {
+  @extend .highlight-bg;
+  cursor: pointer;
+  
+  &:hover { @extend .highlight-light-bg; }
+  &:active { @extend .highlight-dark-bg; }
+}
+
+.highlight-link {
+  @extend .highlight-fg;
+  text-decoration: none;
+  
+  &:hover { @extend .highlight-light-fg; }
+  &:active { @extend .highlight-dark-fg; }
+}

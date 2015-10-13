@@ -6,8 +6,17 @@ gem 'guard'
 
 # Guard plugins used for watching and compiling each asset
 
-gem 'guard-haml-coffee', :git => 'https://github.com/guard/guard-haml-coffee.git'
-gem 'guard-sass'
-gem 'guard-coffeescript'
-gem 'guard-uglify'
-gem 'guard-jammit'
+group :guard_plugins do
+  gem 'guard-haml-coffee', :git => 'https://github.com/guard/guard-haml-coffee.git'
+  gem 'guard-sass'
+  gem 'guard-coffeescript'
+  gem 'guard-uglify'
+  gem 'guard-jammit'
+  gem 'guard-sprockets'
+end
+
+group :utilities do
+  gem 'uglifier'
+  gem 'sprockets-sass'
+  gem 'sass-rails'
+end
